@@ -119,8 +119,8 @@ def workFlow(sourceImg, mapSEM, resultsPath):
     return outputFile
 
 
-imgDir      = main_win.sourceImageFolder
-resultsPath =  main_win.sourceResultsFolder
+#imgDir      = main_win.sourceImageFolder
+#resultsPath =  main_win.sourceResultsFolder
 
 # imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
 # resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
@@ -128,6 +128,8 @@ resultsPath =  main_win.sourceResultsFolder
 myMap = os.path.join(os.getcwd(), 'main/map.json')
 
 def execute(imgDir, resultsPath):
+    imgDir      = main_win.sourceImageFolder
+    resultsPath =  main_win.sourceResultsFolder
     for file in os.listdir(imgDir):
         if file.endswith(".tif"):
             workFlow(os.path.join(imgDir, file), myMap, resultsPath)
