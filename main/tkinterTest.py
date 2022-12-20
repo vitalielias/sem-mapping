@@ -2,7 +2,10 @@ import tkinter as tk
 from tkinter import filedialog
 
 main_win = tk.Tk()
-c1 = tk.Canvas(main_win, width= 1000, height= 750, bg="SpringGreen2")
+Title= tk.Label(main_win,text = "SEM Metadata Extractor")
+Title.config(font =("Courier", 24))
+Title.pack()
+
 main_win.geometry("1000x500")
 main_win.sourceFolder = ''
 main_win.sourceFile = ''
