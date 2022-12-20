@@ -121,10 +121,6 @@ def workFlow(sourceImg, mapSEM, resultsPath):
         
     return outputFile
 
-
-#imgDir      = main_win.sourceImageFolder
-#resultsPath =  main_win.sourceResultsFolder
-
 # imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
 # resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 
