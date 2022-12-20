@@ -31,14 +31,9 @@ b_chooseFile.width = 100
 # b_chooseMap.place(x = 550, y = 50)
 # b_chooseMap.width = 100
 
-exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command=main_win.destroy)
-exec.place(x = 300, y = 150)
-exec.width = 100
-
-
-main_win.mainloop()
-print(f'your selected image directory is: {main_win.sourceImageFolder}')
-print(f'your selected resultss directory is: {main_win.sourceResultsFolder}')
+quit = tk.Button(main_win, text = "Exit", width = 20, height = 3, command=main_win.destroy)
+quit.place(x = 300, y = 150)
+quit.width = 100
 
 import json
 import os
@@ -132,8 +127,14 @@ imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDete
 resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 myMap = os.path.join(os.getcwd(), 'main/map.json')
 
-for file in os.listdir(imgDir):
-    if file.endswith(".tif"):
-        workFlow(os.path.join(imgDir, file), myMap, resultsPath)
+def main():
+    for file in os.listdir(imgDir):
+        if file.endswith(".tif"):
+            workFlow(os.path.join(imgDir, file), myMap, resultsPath)
+
+exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command=main)
+exec.place(x = 50, y = 150)
+exec.width = 100
+main_win.mainloop()
 
 tk.messagebox.showinfo('Info', f'Success! The processed files are now in {resultsPath}.')
