@@ -125,18 +125,19 @@ def workFlow(sourceImg, mapSEM, resultsPath):
 # imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
 # resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 
-myMap = os.path.join(os.getcwd(), 'main/map.json')
+myMap = os.path.join(os.getcwd(), 'map.json')
 
-def execute(imgDir, resultsPath):
+def execute():
     imgDir      = main_win.sourceImageFolder
     resultsPath =  main_win.sourceResultsFolder
     for file in os.listdir(imgDir):
         if file.endswith(".tif"):
             workFlow(os.path.join(imgDir, file), myMap, resultsPath)
 
-exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command = execute(imgDir, resultsPath))
+    tk.messagebox.showinfo('Info', f'Success! The processed files are now in {resultsPath}.')
+
+
+exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command = execute)
 exec.place(x = 50, y = 150)
 exec.width = 100
 main_win.mainloop()
-
-tk.messagebox.showinfo('Info', f'Success! The processed files are now in {resultsPath}.')
