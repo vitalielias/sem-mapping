@@ -27,9 +27,9 @@ b_chooseFile = tk.Button(main_win, text = "Choose Result Folder", width = 20, he
 b_chooseFile.place(x = 300, y = 50)
 b_chooseFile.width = 100
 
-b_chooseMap = tk.Button(main_win, text = "Choose Map File", width = 20, height = 3, command = chooseMapFile)
-b_chooseMap.place(x = 550, y = 50)
-b_chooseMap.width = 100
+# b_chooseMap = tk.Button(main_win, text = "Choose Map File", width = 20, height = 3, command = chooseMapFile)
+# b_chooseMap.place(x = 550, y = 50)
+# b_chooseMap.width = 100
 
 exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command=main_win.destroy)
 exec.place(x = 300, y = 150)
@@ -126,11 +126,11 @@ def workFlow(sourceImg, mapSEM, resultsPath):
 
 imgDir      = main_win.sourceImageFolder
 resultsPath =  main_win.sourceResultsFolder
-myMap = main_win.mapFilePath
+# myMap = main_win.mapFilePath
 
 imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
 resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
-myMap = '/Users/elias/Documents/sem-mapping/main/map.json'
+myMap = os.path.join(os.getcwd(), 'main/map.json')
 
 for file in os.listdir(imgDir):
     if file.endswith(".tif"):
