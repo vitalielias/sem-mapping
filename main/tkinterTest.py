@@ -10,14 +10,18 @@ main_win.sourceImageFolder = ''
 main_win.sourceResultsFolder = ''
 main_win.mapFilePath = ''
 
+LabelImageDir = tk.Label(main_win,text = "No Image directory chosen yet")
+LabelImageDir.place(x = 60, y = 360)
+LabelResultDir = tk.Label(main_win,text = "No Result directory chosen yet")
+LabelResultDir.place(x = 60, y = 400)
+
 def chooseImgDir():
-    main_win.sourceImageFolder =  filedialog.askdirectory(parent=main_win, initialdir= "/", title='Please select a directory')
+    main_win.sourceImageFolder =  filedialog.askdirectory(parent = main_win, initialdir = "/", title = 'Please select a directory')
+    LabelImageDir.config(text="Chosen Image directory:  " + main_win.sourceImageFolder)
 
 def chooseResDir():
-    main_win.sourceResultsFolder =  filedialog.askdirectory(parent=main_win, initialdir= "/", title='Please select a directory')
-
-def chooseMapFile():
-    main_win.mapFilePath = filedialog.askopenfilename(parent=main_win, initialdir= "/", title='Please select a file')
+    main_win.sourceResultsFolder =  filedialog.askdirectory(parent = main_win, initialdir = "/", title = 'Please select a directory')
+    LabelResultDir.config(text="Chosen Result directory:  " + main_win.sourceResultsFolder)
 
 b_chooseDir = tk.Button(main_win, text = "Choose Image Folder", width = 20, height = 3, command = chooseImgDir)
 b_chooseDir.place(x = 50, y = 50)
@@ -26,10 +30,6 @@ b_chooseDir.width = 100
 b_chooseFile = tk.Button(main_win, text = "Choose Result Folder", width = 20, height = 3, command = chooseResDir)
 b_chooseFile.place(x = 300, y = 50)
 b_chooseFile.width = 100
-
-# b_chooseMap = tk.Button(main_win, text = "Choose Map File", width = 20, height = 3, command = chooseMapFile)
-# b_chooseMap.place(x = 550, y = 50)
-# b_chooseMap.width = 100
 
 quit = tk.Button(main_win, text = "Exit", width = 20, height = 3, command=main_win.destroy)
 quit.place(x = 300, y = 150)
@@ -123,8 +123,8 @@ imgDir      = main_win.sourceImageFolder
 resultsPath =  main_win.sourceResultsFolder
 # myMap = main_win.mapFilePath
 
-imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
-resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
+# imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
+# resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 myMap = os.path.join(os.getcwd(), 'main/map.json')
 
 def main():
