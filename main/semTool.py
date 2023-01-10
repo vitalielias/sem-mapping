@@ -1,43 +1,3 @@
-import tkinter as tk
-from tkinter import filedialog
-
-main_win = tk.Tk()
-Title= tk.Label(main_win,text = "SEM Metadata Extractor")
-Title.config(font =("Courier", 24))
-Title.pack()
-
-main_win.geometry("600x500")
-main_win.sourceFolder = ''
-main_win.sourceFile = ''
-main_win.sourceImageFolder = ''
-main_win.sourceResultsFolder = ''
-main_win.mapFilePath = ''
-
-LabelImageDir = tk.Label(main_win,text = "No Image directory chosen yet")
-LabelImageDir.place(x = 60, y = 300)
-LabelResultDir = tk.Label(main_win,text = "No Result directory chosen yet")
-LabelResultDir.place(x = 60, y = 340)
-
-def chooseImgDir():
-    main_win.sourceImageFolder =  filedialog.askdirectory(parent = main_win, initialdir = "/", title = 'Please select a directory')
-    LabelImageDir.config(text="Chosen Image directory:  " + main_win.sourceImageFolder)
-
-def chooseResDir():
-    main_win.sourceResultsFolder =  filedialog.askdirectory(parent = main_win, initialdir = "/", title = 'Please select a directory')
-    LabelResultDir.config(text="Chosen Result directory:  " + main_win.sourceResultsFolder)
-
-b_chooseDir = tk.Button(main_win, text = "Choose Image Folder", width = 20, height = 3, command = chooseImgDir)
-b_chooseDir.place(x = 50, y = 80)
-b_chooseDir.width = 100
-
-b_chooseFile = tk.Button(main_win, text = "Choose Result Folder", width = 20, height = 3, command = chooseResDir)
-b_chooseFile.place(x = 300, y = 80)
-b_chooseFile.width = 100
-
-quit = tk.Button(main_win, text = "Exit", width = 20, height = 3, command=main_win.destroy)
-quit.place(x = 350, y = 400)
-quit.width = 100
-
 import json
 import os
 import copy
@@ -121,22 +81,13 @@ def workFlow(sourceImg, mapSEM, resultsPath):
         
     return outputFile
 
-# imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
-# resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
+imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
+resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 
 def execute():
-    imgDir      = main_win.sourceImageFolder
-    resultsPath =  main_win.sourceResultsFolder
     myMap = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'map.json')
-
     for file in os.listdir(imgDir):
         if file.endswith(".tif"):
             workFlow(os.path.join(imgDir, file), myMap, resultsPath)
 
-    tk.messagebox.showinfo('Info', f'Success! The processed files are now in {resultsPath}.')
-
-
-exec = tk.Button(main_win, text = "Execute", width = 20, height = 3, command = execute)
-exec.place(x = 170, y = 200)
-exec.width = 100
-main_win.mainloop()
+execute()
