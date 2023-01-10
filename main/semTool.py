@@ -4,6 +4,7 @@ import copy
 from attributeMapping import AttributeMapping
 import datetime as dt
 from dateutil import parser
+import zipfile
 
 # view all the metadata stored in the ZEISS TIFF file
 # from https://github.com/ks00x/zeiss_tiff_meta.git
@@ -81,13 +82,23 @@ def workFlow(sourceImg, mapSEM, resultsPath):
         
     return outputFile
 
-imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector'
+imgDir      = '/Users/elias/Documents/sem-mapping/main/test_images/DifferentDetector_test.zip'
 resultsPath =  '/Users/elias/Documents/sem-mapping/main/results'
 
 def execute():
     myMap = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'map.json')
-    for file in os.listdir(imgDir):
-        if file.endswith(".tif"):
-            workFlow(os.path.join(imgDir, file), myMap, resultsPath)
+    
+    with zipfile.ZipFile(imgDir, 'r') as zip:
+        extracted = zip.namelist()
+        zip.extractall()
+        zip.close()
+
+    for f in extracted:
+        if f[-4:] == '.tif':
+            workFlow(f, myMap, resultsPath)
+
+    # for file in os.listdir(imgDir):
+    #     if file.endswith(".tif"):
+    #         workFlow(os.path.join(imgDir, file), myMap, resultsPath)
 
 execute()
